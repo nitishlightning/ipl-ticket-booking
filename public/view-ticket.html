@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Ticket</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Navigation Links -->
+      <img src="src/logo.jpg" alt="IPL Logo" class="logo">
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="videos.html" class="nav-link">Highlights</a>
+        <a href="booking.html" class="nav-link">Booking</a>
+        <a href="view-ticket.html" class="nav-link">View Ticket</a>
+        <a href="credits.html" class="nav-link">Credits</a>
+        <button class="nav-link logout-btn" onclick="confirmLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <div class="ticket-container">
+    <div class="headerrrrrrrrrr">
+    <h1></h1>
+  </div>
+  <div class="ticket">
+    <p><strong>Match:</strong> <span id="match">Loading...</span></p>
+    <p><strong>Venue:</strong> <span id="venue">Loading...</span></p>
+    <p><strong>Date:</strong> <span id="date">Loading...</span></p>
+    <p><strong>Seats:</strong> <span id="seats">Loading...</span></p>
+    <p><strong>Seat Type:</strong> <span id="seatType">Loading...</span></p>
+  </div>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+    <div class="thabi">
+    <button onclick="window.location.href='/index.html'">Back to Home</button>
+  </div>
+  </div>
+  <script>
+    function autofillDetails() {
+      const matchSelect = document.getElementById("match");
+      const selectedOption = matchSelect.options[matchSelect.selectedIndex];
+
+      const matchDate = selectedOption.getAttribute("data-date");
+      const matchVenue = selectedOption.getAttribute("data-venue");
+
+      document.getElementById("venue").value = matchVenue || "";
+      document.getElementById("date").value = matchDate || "";
+    }
+
+    function formatDateForSubmission() {
+      const dateInput = document.getElementById("date");
+      const dateValue = new Date(dateInput.value);
+      dateInput.value = dateValue.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
+    }
+
+    fetch("/api/booking-details")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch booking details.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Format the date to 'YYYY-MM-DD'
+        const formattedDate = new Date(data.match_date).toISOString().split("T")[0];
+        
+        // Populate ticket details
+        document.getElementById("match").textContent = data.match_name;
+        document.getElementById("venue").textContent = data.venue;
+        document.getElementById("date").textContent = formattedDate;
+        document.getElementById("seatType").textContent = data.seat_type;
+        document.getElementById("seats").textContent = data.seats;
+         // Display seat type
+      })
+      .catch(err => {
+        console.error("Error fetching booking details:", err);
+        alert("Error loading booking details. Please try again later.");
+      });
+
+      function confirmLogout() {
+      if (confirm("Are you sure you want to logout?")) {
+        // Redirect to logout logic
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+
+  <div id="loader">
+    <div></div>
+  </div>
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 1000);
+    });
+  </script>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="src/logo1.png" alt="IPL Logo">
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/IPL/" target="_blank" class="social-link">
+          <img src="src/fb.jpg" alt="Facebook">
+        </a>
+        <a href="https://x.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-link">
+          <img src="src/X.jpg" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/iplt20/?hl=en" target="_blank" class="social-link">
+          <img src="src/insta.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/ipl" target="_blank" class="social-link">
+          <img src="src/yt.jpg" alt="YouTube">
+        </a>
+      </div>
+      <p>&copy; 2024 IPL Ticket Booking. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
