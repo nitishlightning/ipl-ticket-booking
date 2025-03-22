@@ -5,8 +5,11 @@ const bodyParser = require("body-parser");
 const cors=require("cors");
 const session = require("express-session");
 const app = express();
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public"));
+app.use(express.static("public", { index: false }));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
@@ -22,18 +25,9 @@ cookie: { secure: false }, // Set to true if using HTTPS
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "Nitish@2605",
   database: "IPL_Ticket_Booking",
 });
-
-db.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-    return;
-  }
-  console.log("Connected to database");
-});
-
 
 
 db.connect((err) => {
@@ -127,7 +121,6 @@ app.get("/api/booking-details", (req, res) => {
 });
 
 // View tickets
-
 // Route to handle ticket view
 app.get("/view-ticket", (req, res) => {
   if (!req.session.userId) {
@@ -155,9 +148,8 @@ app.get("/view-ticket", (req, res) => {
   }
   });
   });
-  
 
 // Start server
 app.listen(3000, () => {
-  console.log("Server running on port 3000");
+  console.log("Server running on port: http://localhost:3000");
 });
