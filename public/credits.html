@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credits</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Ensure the body and html take up the full height */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("src/bg1.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+
+    /* The credits container */
+    .credits-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    /* Style for each credit line */
+    .credits-text {
+      opacity: 0; /* Initially hidden */
+      font-size: 30px;
+      animation: fadeInOutLine 2s ease-in-out forwards;
+      margin: 10px 0;
+    }
+
+    /* Keyframes for line-by-line fade-in and fade-out */
+    @keyframes fadeInOutLine {
+      0% {
+        opacity: 0;
+        transform: translateY(20px); /* Start off-screen */
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0); /* Fade in and bring to original position */
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-20px); /* Fade out and move up */
+      }
+    }
+
+    /* Adding delay for each line */
+    .credits-text:nth-child(1) {
+      animation-delay: 0s; /* No delay for the first line */
+    }
+
+    .credits-text:nth-child(2) {
+      animation-delay: 2s; /* Delay the second line */
+    }
+
+    .credits-text:nth-child(3) {
+      animation-delay: 4s; /* Delay the third line */
+    }
+
+    .credits-text:nth-child(4) {
+      animation-delay: 6s; /* Delay the fourth line */
+    }
+
+    .credits-text:nth-child(5) {
+      animation-delay: 8s; /* Delay the fifth line */
+    }
+
+    .credits-text:nth-child(6) {
+      animation-delay: 10s; /* Delay the sixth line */
+    }
+
+    .credits-text:nth-child(7) {
+      animation-delay: 12s; /* Delay the seventh line */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Navigation Links -->
+      <img src="src/logo.jpg" alt="IPL Logo" class="logo">
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="videos.html" class="nav-link">Highlights</a>
+        <a href="booking.html" class="nav-link">Booking</a>
+        <a href="view-ticket.html" class="nav-link">View Ticket</a>
+        <a href="credits.html" class="nav-link">Credits</a>
+        <button class="nav-link logout-btn" onclick="confirmLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+    <div class="credits-container">
+        <div class="credits">
+        <p class="credits-text">Developed by Nitish Kumar - Frontend Developer</p>
+        <p class="credits-text">Backend Development - Node.js & MySQL | Designed by Nitish</p>
+        <p class="credits-text">Special thanks to the IPL Team</p>
+        <p class="credits-text">Background Image from Unsplash</p>
+        </div>
+        </div>
+        <audio autoplay loop>
+        <source src="src/audio/flute.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+        </audio>
+        <script>
+            // Function to redirect after animation ends
+            function redirectToIndex() {
+              setTimeout(function() {
+                window.location.href = 'index.html'; // Redirect to index page
+              }, 14 * 1000); // Delay based on the total time for the credits to animate (14 seconds)
+            }
+        
+            // Start the redirection after the credits animation ends
+            window.onload = redirectToIndex;
+
+            function confirmLogout() {
+      if (confirm("Are you sure you want to logout?")) {
+        // Redirect to logout logic
+        window.location.href = "login.html";
+      }
+    }
+          </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<div class="reg-container">
+<main>
+  <form action="/register" method="post">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Register</button>
+  </form>
+  <div class="acc">
+<center>
+  <p>Already have an account? <a href="login.html">Login here</a>.</p>
+</center>
+</div>
+</main>
+</div>
+<div id="loader">
+  <div></div>
+</div>
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 1000);
+  });
+</script>
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="src/logo1.png" alt="IPL Logo">
+    </div>
+    <div class="social-links">
+      <a href="https://www.facebook.com/IPL/" target="_blank" class="social-link">
+        <img src="src/fb.jpg" alt="Facebook">
+      </a>
+      <a href="https://x.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-link">
+        <img src="src/X.jpg" alt="Twitter">
+      </a>
+      <a href="https://www.instagram.com/iplt20/?hl=en" target="_blank" class="social-link">
+        <img src="src/insta.jpg" alt="Instagram">
+      </a>
+      <a href="https://www.youtube.com/ipl" target="_blank" class="social-link">
+        <img src="src/yt.jpg" alt="YouTube">
+      </a>
+    </div>
+    <p>&copy; 2024 IPL Ticket Booking. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

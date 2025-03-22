@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Navigation Links -->
+      <img src="src/logo.jpg" alt="IPL Logo" class="logo">
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="videos.html" class="nav-link">Highlights</a>
+        <a href="booking.html" class="nav-link">Booking</a>
+        <a href="view-ticket.html" class="nav-link">View Ticket</a>
+        <a href="credits.html" class="nav-link">Credits</a>
+        <button class="nav-link logout-btn" onclick="confirmLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <script>
+  function confirmLogout() {
+      if (confirm("Are you sure you want to logout?")) {
+        // Redirect to logout logic
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+    <h1>Welcome to the IPL Ticket Booking System</h1>
+  <center>
+    <img src="src/schedule.jpg" width="1200px" height="1700px" >
+  </center>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="src/logo1.png" alt="IPL Logo">
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/IPL/" target="_blank" class="social-link">
+          <img src="src/fb.jpg" alt="Facebook">
+        </a>
+        <a href="https://x.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-link">
+          <img src="src/X.jpg" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/iplt20/?hl=en" target="_blank" class="social-link">
+          <img src="src/insta.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/ipl" target="_blank" class="social-link">
+          <img src="src/yt.jpg" alt="YouTube">
+        </a>
+      </div>
+      <p>&copy; 2024 IPL Ticket Booking. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

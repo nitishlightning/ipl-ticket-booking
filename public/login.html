@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loader">
+    <div></div>
+  </div>
+  <script>
+    window.onload = function () {
+      document.getElementById("loader").style.display = "none";
+    };
+  </script> 
+  <div class="login-container">
+    <form id="login-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <div class="acc"></div>
+    <center>
+    <p>Don't have an account? <a href="registration.html">Register here</a>.</p>
+    <div id="error-message" class="error-message"></div>
+  </center>
+</div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("login-form");
+    const errorMessage = document.getElementById("error-message");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(loginForm);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          window.location.href = "/index.html"; // Redirect to home page
+        } else {
+          errorMessage.textContent = result.message;
+          errorMessage.style.display = "block";
+        }
+      } catch (error) {
+        errorMessage.textContent = "An unexpected error occurred.";
+        errorMessage.style.display = "block";
+      }
+    });
+  </script> 
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="src/logo1.png" alt="IPL Logo">
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/IPL/" target="_blank" class="social-link">
+          <img src="src/fb.jpg" alt="Facebook">
+        </a>
+        <a href="https://x.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-link">
+          <img src="src/X.jpg" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/iplt20/?hl=en" target="_blank" class="social-link">
+          <img src="src/insta.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/ipl" target="_blank" class="social-link">
+          <img src="src/yt.jpg" alt="YouTube">
+        </a>
+      </div>
+      <p>&copy; 2024 IPL Ticket Booking. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

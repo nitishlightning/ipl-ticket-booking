@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Tickets</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Navigation Links -->
+      <img src="src/logo.jpg" alt="IPL Logo" class="logo">
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="videos.html" class="nav-link">Highlights</a>
+        <a href="booking.html" class="nav-link">Booking</a>
+        <a href="view-ticket.html" class="nav-link">View Ticket</a>
+        <a href="credits.html" class="nav-link">Credits</a>
+        <button class="nav-link logout-btn" onclick="confirmLogout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <form id="booking-form" action="/book" method="post" onsubmit="formatDateForSubmission()">
+      <label for="match">Select Match:</label>
+      <select id="match" name="match_name" required onchange="autofillDetails()">
+        <option value="" disabled selected>Select a match</option>
+<option value="Chennai Super Kings vs Royal Challengers Bengaluru" data-date="2024-03-22" data-venue="Chennai">Chennai Super Kings vs Royal Challengers Bengaluru</option>
+<option value="Punjab Kings vs Delhi Capitals" data-date="2024-03-23" data-venue="Mullanpur">Punjab Kings vs Delhi Capitals</option>
+<option value="Kolkata Knight Riders vs Sunrisers Hyderabad" data-date="2024-03-23" data-venue="Kolkata">Kolkata Knight Riders vs Sunrisers Hyderabad</option>
+<option value="Rajasthan Royals vs Lucknow Super Giants" data-date="2024-03-24" data-venue="Jaipur">Rajasthan Royals vs Lucknow Super Giants</option>
+<option value="Gujarat Titans vs Mumbai Indians" data-date="2024-03-24" data-venue="Ahmedabad">Gujarat Titans vs Mumbai Indians</option>
+<option value="Royal Challengers Bengaluru vs Punjab Kings" data-date="2024-03-25" data-venue="Bengaluru">Royal Challengers Bengaluru vs Punjab Kings</option>
+<option value="Chennai Super Kings vs Gujarat Titans" data-date="2024-03-26" data-venue="Chennai">Chennai Super Kings vs Gujarat Titans</option>
+<option value="Sunrisers Hyderabad vs Mumbai Indians" data-date="2024-03-27" data-venue="Hyderabad">Sunrisers Hyderabad vs Mumbai Indians</option>
+<option value="Rajasthan Royals vs Delhi Capitals" data-date="2024-03-28" data-venue="Jaipur">Rajasthan Royals vs Delhi Capitals</option>
+<option value="Royal Challengers Bengaluru vs Kolkata Knight Riders" data-date="2024-03-29" data-venue="Bengaluru">Royal Challengers Bengaluru vs Kolkata Knight Riders</option>
+      </select>
+
+      <label for="venue">Venue:</label>
+      <input type="text" id="venue" name="venue" readonly required>
+
+      <label for="date">Match Date:</label>
+      <input type="date" id="date" name="match_date" readonly required>
+
+      <label for="seat-type">Seat Type:</label>
+      <select id="seat-type" name="seat_type" required>
+        <option value="" disabled selected>Select Seat Type</option>
+        <option value="VIP">VIP</option>
+        <option value="Tier 1">Tier 1</option>
+        <option value="Tier 2">Tier 2</option>
+        <option value="Tier 3">Tier 3</option>
+      </select>
+
+      <label for="seats">Number of Seats:</label>
+      <input type="number" id="seats" name="seats" min="1" max="10" required>
+
+      <button type="submit">Book Ticket</button>
+    </form>
+  </main>
+  <script>
+    function autofillDetails() {
+      const matchSelect = document.getElementById("match");
+      const selectedOption = matchSelect.options[matchSelect.selectedIndex];
+
+      const matchDate = selectedOption.getAttribute("data-date");
+      const matchVenue = selectedOption.getAttribute("data-venue");
+
+      document.getElementById("venue").value = matchVenue || "";
+      document.getElementById("date").value = matchDate || "";
+    }
+
+    function formatDateForSubmission() {
+      const dateInput = document.getElementById("date");
+      const dateValue = new Date(dateInput.value);
+      dateInput.value = dateValue.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
+    }
+
+    function confirmLogout() {
+      if (confirm("Are you sure you want to logout?")) {
+        // Redirect to logout logic
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="src/logo1.png" alt="IPL Logo">
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/IPL/" target="_blank" class="social-link">
+          <img src="src/fb.jpg" alt="Facebook">
+        </a>
+        <a href="https://x.com/IPL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-link">
+          <img src="src/X.jpg" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/iplt20/?hl=en" target="_blank" class="social-link">
+          <img src="src/insta.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/ipl" target="_blank" class="social-link">
+          <img src="src/yt.jpg" alt="YouTube">
+        </a>
+      </div>
+      <p>&copy; 2024 IPL Ticket Booking. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
