@@ -21,6 +21,12 @@ cd ipl-ticket-booking
 ### 2. Install Dependencies
 ```sh
 npm install
+npm install mysql2
+npm install express-session
+npm install express
+npm install cors
+npm install body-parser
+npm install path
 ```
 
 ### 3. Database Setup
@@ -125,11 +131,11 @@ Displays the most recent booked ticket.
 
 ### 6. Updating the Background Image for the View Ticket Page
 
-1.go to "https://nitishlightning.github.io/QR-Code-Generator/"
+1. go to "https://nitishlightning.github.io/QR-Code-Generator/"
 
-2.generate a text to QR and download it.
+2. generate a text to QR and download it.
 
-3.Modify the `src/bg.jpg` file or replace it with your desired background image. Update the CSS as follows:
+3. Modify the `src/bg.jpg` file or replace it with your desired background image. Update the CSS as follows:
 ```css
 .ticket-container {
   position: relative;
@@ -143,6 +149,11 @@ Displays the most recent booked ticket.
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 ```
+
+### 6. Adding videos to videos.html page
+
+1. Download the videos from the drive link and save it inside src/videos directory
+2. link: https://drive.google.com/drive/folders/11ygOD4KPM8Pl23UGwIc9phHIVT-PM8zZ?usp=drive_link
 
 
 ## Contributors
